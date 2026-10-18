@@ -1,7 +1,8 @@
 import { Clock, MapPin, Phone } from "lucide-react"
 import { Link } from "react-router"
 import { useQuote } from "./quote-context"
-import { business, navLinks, serviceAreas } from "@/data/site"
+import { cities } from "@/data/cities"
+import { business, flatNav, serviceAreas } from "@/data/site"
 import { FacebookIcon } from "./section-heading"
 import { QuoteForm } from "./quote-form"
 
@@ -102,18 +103,31 @@ export function Footer() {
           <nav aria-label="Footer">
             <p className="eyebrow mb-4 text-navy-900">Explore</p>
             <ul className="grid grid-cols-2 gap-2 text-sm text-muted-foreground">
-              {[{ label: "Home", to: "/" }, ...navLinks].map((l) => (
-                <li key={l.to}><Link to={l.to} className="hover:text-navy-800">{l.label}</Link></li>
+              {[{ label: "Home", to: "/" }, ...flatNav].map((l) => (
+                <li key={l.to + l.label}><Link to={l.to} className="hover:text-navy-800">{l.label}</Link></li>
               ))}
             </ul>
           </nav>
 
           <div>
-            <p className="eyebrow mb-4 text-navy-900">Countertop remodeling in Colorado</p>
+            <p className="eyebrow mb-4 text-navy-900">
+              <Link to="/service-areas" className="hover:text-brand-red">Countertop remodeling in Colorado</Link>
+            </p>
             <ul className="flex flex-wrap gap-x-3 gap-y-1.5 text-sm text-muted-foreground">
-              {serviceAreas.map((c) => (
-                <li key={c}>{c}</li>
-              ))}
+              {serviceAreas.map((name) => {
+                const city = cities.find((c) => c.name === name)
+                return (
+                  <li key={name}>
+                    {city ? (
+                      <Link to={`/service-areas/${city.slug}`} className="font-medium text-navy-800 underline-offset-4 hover:underline">
+                        {name}
+                      </Link>
+                    ) : (
+                      name
+                    )}
+                  </li>
+                )
+              })}
             </ul>
           </div>
         </div>

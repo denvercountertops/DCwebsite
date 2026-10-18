@@ -99,7 +99,11 @@ export function PageHero({
           <ChevronRight className="size-3.5" />
           <span className="text-white">{eyebrow}</span>
         </nav>
-        <h1 className="max-w-3xl font-heading text-5xl leading-[1.03] text-balance animate-in fade-in slide-in-from-bottom-4 duration-700 md:text-7xl">
+        <h1
+          className={`max-w-4xl font-heading leading-[1.03] text-balance animate-in fade-in slide-in-from-bottom-4 duration-700 ${
+            title.length > 45 ? "text-4xl md:text-6xl" : "text-5xl md:text-7xl"
+          }`}
+        >
           {title}
         </h1>
         {intro && (

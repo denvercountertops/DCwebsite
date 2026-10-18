@@ -1,7 +1,11 @@
 # Old denvercounter.com addresses -> new pages (permanent, keeps search rankings)
-/home-6654            /             301
-/quartz-countertops   /materials    301
-/granite-slab         /materials    301
-/sinks                /countertops  301
-/porcelain-walls      /services     301
-/blog-page            /faq          301
+/home-6654                                    /                                         301
+/quartz-countertops                           /materials                                301
+/granite-slab                                 /materials                                301
+/sinks                                        /countertops                              301
+/porcelain-walls                              /services                                 301
+/blog-page                                    /blog                                     301
+/post/7-Mistakes                              /blog/countertop-buying-mistakes          301
+/post/How-to-Remove-Old-Countertops           /blog/how-to-remove-old-countertops       301
+/post/countertop-warranty-guide-redesign      /blog/countertop-warranty-guide           301
+/post/budgeting-for-a-countertop-renovation   /blog/countertop-renovation-budget        301

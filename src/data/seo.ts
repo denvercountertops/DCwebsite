@@ -1,4 +1,7 @@
-export type PageMeta = { title: string; description: string; hero?: string }
+import { posts } from "./blog"
+import { cities } from "./cities"
+
+export type PageMeta ={ title: string; description: string; hero?: string }
 
 export const pageMeta: Record<string, PageMeta> = {
   "/": {
@@ -60,6 +63,46 @@ export const pageMeta: Record<string, PageMeta> = {
     description:
       "Get a free countertop quote or visit our showroom at 2101 W College Ave, Englewood, CO. Call (720) 620-1189. Open Mon–Fri 8:30–5, Sat 9–1.",
   },
+}
+
+pageMeta["/deals"] = {
+  title: "Full Slab Liquidation Deals | Denver Countertops",
+  description: pageMeta["/deals"].description,
+  hero: pageMeta["/deals"].hero,
+}
+
+pageMeta["/deals/remnants"] = {
+  title: "Granite & Quartz Remnants | Denver Countertops",
+  description:
+    "Discounted granite, quartz and quartzite remnants for vanities, fireplaces, bar tops and small projects. Call (720) 620-1189 for today's remnant list.",
+  hero: "/images/slabs/whisper-white.webp",
+}
+
+pageMeta["/blog"] = {
+  title: "Countertop & Remodeling Tips | Denver Countertops Blog",
+  description: "Straight answers on buying, budgeting, removing and caring for countertops from the Denver Countertops team.",
+  hero: "/images/projects/project-7.webp",
+}
+for (const p of posts) {
+  pageMeta[`/blog/${p.slug}`] = {
+    title: `${p.title} | Denver Countertops`,
+    description: p.description.length > 160 ? `${p.description.slice(0, 157).replace(/\s+\S*$/, "")}…` : p.description,
+    hero: p.cover?.src,
+  }
+}
+
+pageMeta["/service-areas"] = {
+  title: "Service Areas | Countertops Across the Denver Metro | Denver Countertops",
+  description:
+    "Custom countertops templated, fabricated and installed by our own team in Denver, Aurora, Lakewood, Arvada, Westminster, Thornton, Centennial, Boulder, Broomfield, Castle Rock and more.",
+  hero: "/images/projects/project-9.webp",
+}
+for (const c of cities) {
+  pageMeta[`/service-areas/${c.slug}`] = {
+    title: `Countertops in ${c.name}, CO | Granite & Quartz | Denver Countertops`,
+    description: `${c.intro} Free quotes: (720) 620-1189.`,
+    hero: c.image,
+  }
 }
 
 export const notFoundMeta: PageMeta = {

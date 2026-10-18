@@ -16,17 +16,36 @@ export const business = {
 // Paste your GoHighLevel "Inbound Webhook" trigger URL here (https://services.leadconnectorhq.com/hooks/...).
 export const FORM_ENDPOINT = ""
 
-export const navLinks = [
+export type NavItem = { label: string; to: string; note?: string; children?: NavItem[] }
+
+export const navLinks: NavItem[] = [
   { label: "Countertops", to: "/countertops" },
   { label: "Materials", to: "/materials" },
-  { label: "Slab Deals", to: "/deals" },
+  {
+    label: "Slab Deals",
+    to: "/deals",
+    children: [
+      { label: "Full Slab Deals", to: "/deals", note: "Overstock slabs at liquidation prices" },
+      { label: "Remnants", to: "/deals/remnants", note: "For vanities, fireplaces & small projects" },
+    ],
+  },
   { label: "Pricing", to: "/pricing" },
   { label: "Our Work", to: "/our-work" },
-  { label: "About", to: "/about" },
   { label: "Services", to: "/services" },
-  { label: "FAQ", to: "/faq" },
+  {
+    label: "About",
+    to: "/about",
+    children: [
+      { label: "About Us", to: "/about", note: "Family owned since 2002" },
+      { label: "Service Areas", to: "/service-areas", note: "Denver metro & Front Range" },
+      { label: "Blog", to: "/blog", note: "Countertop & remodeling tips" },
+      { label: "FAQ", to: "/faq", note: "80+ answers" },
+    ],
+  },
   { label: "Contact", to: "/contact" },
 ]
+
+export const flatNav = navLinks.flatMap((l) => l.children ?? [l])
 
 export const warranty = "1-year warranty on fabrication and installation workmanship"
 
@@ -171,6 +190,24 @@ export const services = [
 ]
 
 export type SlabType = "Quartz" | "Granite" | "Quartzite"
+
+// Add remnant pieces here (photo in public/images/remnants/). Leave empty to show the "call for current remnants" panel.
+export const remnants: {
+  name: string
+  type: SlabType | "Marble" | "Soapstone"
+  size: string
+  price?: number
+  image: string
+}[] = []
+
+export const remnantUses = [
+  "Bathroom vanities",
+  "Fireplace surrounds",
+  "Bar tops & desks",
+  "Laundry & utility rooms",
+  "Small islands & galley kitchens",
+  "Shower benches & window sills",
+]
 
 export const slabs: {
   name: string
@@ -378,6 +415,7 @@ export const projectTypes = [
   "Fireplace / window sills",
   "Commercial countertops",
   "Liquidation slab",
+  "Remnant",
   "Porcelain walls",
   "Repair",
   "Full kitchen or bath remodel",

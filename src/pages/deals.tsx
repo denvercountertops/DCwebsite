@@ -6,7 +6,7 @@ export default function DealsPage() {
     <>
       <PageHero
         eyebrow="Slab Deals"
-        title="Slab liquidation."
+        title="Full slab liquidation."
         intro="Overstock granite, quartz and quartzite at a fraction of the regular price. Inventory changes daily — place a slab on hold before it's gone."
         image="/images/marble.jpg"
       />

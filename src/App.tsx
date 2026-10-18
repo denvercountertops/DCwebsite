@@ -6,6 +6,9 @@ import { Header } from "@/components/site/header"
 import { QuoteProvider } from "@/components/site/quote-context"
 import { metaFor } from "@/data/seo"
 import AboutPage from "@/pages/about"
+import { BlogIndexPage, BlogPostPage } from "@/pages/blog"
+import RemnantsPage from "@/pages/remnants"
+import { CityPage, ServiceAreasPage } from "@/pages/service-areas"
 import ContactPage from "@/pages/contact"
 import CountertopsPage from "@/pages/countertops"
 import DealsPage from "@/pages/deals"
@@ -46,6 +49,11 @@ export default function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/deals" element={<DealsPage />} />
+          <Route path="/deals/remnants" element={<RemnantsPage />} />
+          <Route path="/blog" element={<BlogIndexPage />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
+          <Route path="/service-areas" element={<ServiceAreasPage />} />
+          <Route path="/service-areas/:city" element={<CityPage />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/our-work" element={<OurWorkPage />} />
           <Route path="/materials" element={<MaterialsPage />} />

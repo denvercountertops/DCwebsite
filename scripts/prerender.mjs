@@ -1,4 +1,4 @@
-import { readFileSync, rmSync, writeFileSync } from "node:fs"
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs"
 import { dirname, join } from "node:path"
 import { fileURLToPath, pathToFileURL } from "node:url"
 
@@ -51,11 +51,19 @@ function page(path, meta, opts) {
     .replace('<div id="root"></div>', `<div id="root">${render(path)}</div>`)
 }
 
+// Nested pages live under _pages/ and are served via rewrites, so a top-level page
+// (deals.html) never collides with a same-named folder (deals/).
 const routes = Object.keys(pageMeta)
+const rewrites = []
 for (const path of routes) {
-  const file = path === "/" ? "index.html" : `${path.slice(1)}.html`
+  const nested = path.split("/").length > 2
+  const file = path === "/" ? "index.html" : nested ? `_pages${path}.html` : `${path.slice(1)}.html`
+  mkdirSync(dirname(join(dist, file)), { recursive: true })
   writeFileSync(join(dist, file), page(path, pageMeta[path], { indexable: true }))
+  if (nested) rewrites.push(`${path}  /${file}  200`)
 }
+const redirectsFile = join(dist, "_redirects")
+writeFileSync(redirectsFile, `${readFileSync(redirectsFile, "utf8").trimEnd()}\n\n# Pre-rendered nested pages\n${rewrites.join("\n")}\n`)
 writeFileSync(join(dist, "404.html"), page("/404", notFoundMeta, { indexable: false }))
 
 const today = new Date().toISOString().slice(0, 10)

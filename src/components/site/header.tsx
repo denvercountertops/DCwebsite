@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
-import { Menu, Phone } from "lucide-react"
-import { Link, NavLink } from "react-router"
+import { ChevronDown, Menu, Phone } from "lucide-react"
+import { Link, NavLink, useLocation } from "react-router"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { business, navLinks, trustPoints } from "@/data/site"
+import { business, navLinks, trustPoints, type NavItem } from "@/data/site"
 import { cn } from "@/lib/utils"
 import { useQuote } from "./quote-context"
 
@@ -11,6 +11,14 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const { openQuote } = useQuote()
+  const { pathname } = useLocation()
+
+  const matches = (to: string) => (to === "/" ? pathname === "/" : pathname === to || pathname.startsWith(`${to}/`))
+  const isActive = (l: NavItem) => matches(l.to) || !!l.children?.some((c) => matches(c.to))
+
+  useEffect(() => {
+    if (document.activeElement instanceof HTMLElement) document.activeElement.blur()
+  }, [pathname])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -63,22 +71,49 @@ export function Header() {
 
           <nav aria-label="Main" className="hidden xl:block">
             <ul className="flex items-center gap-6">
-              {navLinks.map((l) => (
-                <li key={l.to}>
-                  <NavLink
-                    to={l.to}
-                    className={({ isActive }) =>
-                      cn(
-                        "relative text-[0.72rem] font-semibold tracking-[0.14em] uppercase transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-0 after:transition-all hover:after:w-full",
-                        scrolled ? "text-navy-900 after:bg-brand-red hover:text-navy-600" : "text-white after:bg-white",
-                        isActive && "after:w-full"
-                      )
-                    }
-                  >
-                    {l.label}
-                  </NavLink>
-                </li>
-              ))}
+              {navLinks.map((l) => {
+                const active = isActive(l)
+                const linkCls = cn(
+                  "relative flex items-center gap-1 py-2 text-[0.72rem] font-semibold tracking-[0.14em] uppercase transition-colors after:absolute after:bottom-0.5 after:left-0 after:h-0.5 after:w-0 after:transition-all hover:after:w-full",
+                  scrolled ? "text-navy-900 after:bg-brand-red hover:text-navy-600" : "text-white after:bg-white",
+                  active && "after:w-full"
+                )
+                if (!l.children) {
+                  return (
+                    <li key={l.to}>
+                      <Link to={l.to} className={linkCls} aria-current={active ? "page" : undefined}>
+                        {l.label}
+                      </Link>
+                    </li>
+                  )
+                }
+                return (
+                  <li key={l.to} className="group relative">
+                    <Link to={l.to} className={linkCls} aria-haspopup="true">
+                      {l.label}
+                      <ChevronDown className="size-3.5 transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
+                    </Link>
+                    <div className="invisible absolute top-full left-1/2 z-50 w-72 -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+                      <ul className="overflow-hidden rounded-sm border border-stone-200 bg-white p-2 shadow-[0_24px_48px_-16px_rgba(22,24,25,0.35)]">
+                        {l.children.map((c) => (
+                          <li key={c.to + c.label}>
+                            <Link
+                              to={c.to}
+                              className={cn(
+                                "block rounded-[3px] px-4 py-3 transition-colors hover:bg-stone-100",
+                                pathname === c.to && "bg-stone-100"
+                              )}
+                            >
+                              <span className="block text-sm font-semibold text-navy-900">{c.label}</span>
+                              {c.note && <span className="mt-0.5 block text-xs text-muted-foreground">{c.note}</span>}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </li>
+                )
+              })}
             </ul>
           </nav>
 
@@ -112,18 +147,38 @@ export function Header() {
                 <div className="flex h-full flex-col overflow-y-auto px-7 pt-14 pb-8">
                   <img src="/images/logo.png" alt="" className="mb-6 h-12 w-auto self-start brightness-0 invert" />
                   <ul className="flex flex-col">
-                    {[{ label: "Home", to: "/" }, ...navLinks].map((l) => (
-                      <li key={l.to}>
-                        <NavLink
-                          to={l.to}
-                          end
-                          onClick={() => setMenuOpen(false)}
-                          className={({ isActive }) =>
-                            cn("block border-b border-white/10 py-3 font-heading text-2xl", isActive && "text-brand-red")
-                          }
-                        >
-                          {l.label}
-                        </NavLink>
+                    {[{ label: "Home", to: "/" } as NavItem, ...navLinks].map((l) => (
+                      <li key={l.to} className="border-b border-white/10">
+                        {l.children ? (
+                          <>
+                            <p className={cn("pt-3 font-heading text-2xl", isActive(l) && "text-brand-red")}>{l.label}</p>
+                            <ul className="pt-1 pb-3">
+                              {l.children.map((c) => (
+                                <li key={c.to + c.label}>
+                                  <NavLink
+                                    to={c.to}
+                                    end
+                                    onClick={() => setMenuOpen(false)}
+                                    className={({ isActive: a }) =>
+                                      cn("block py-1.5 pl-4 text-base text-white/80", a && "text-brand-red")
+                                    }
+                                  >
+                                    {c.label}
+                                  </NavLink>
+                                </li>
+                              ))}
+                            </ul>
+                          </>
+                        ) : (
+                          <NavLink
+                            to={l.to}
+                            end
+                            onClick={() => setMenuOpen(false)}
+                            className={({ isActive: a }) => cn("block py-3 font-heading text-2xl", a && "text-brand-red")}
+                          >
+                            {l.label}
+                          </NavLink>
+                        )}
                       </li>
                     ))}
                   </ul>
