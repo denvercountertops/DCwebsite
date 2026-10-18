@@ -1,10 +1,8 @@
-import { usePageTitle } from "@/hooks/use-reveal"
 import { CtaBand, PageHero } from "@/components/site/hero"
 import { Materials } from "@/components/site/materials"
 import { Partners } from "@/components/site/reviews"
 
 export default function MaterialsPage() {
-  usePageTitle("Countertop Materials Guide | Granite, Quartz, Quartzite | Denver Countertops")
   return (
     <>
       <PageHero

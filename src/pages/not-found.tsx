@@ -1,10 +1,8 @@
 import { Link } from "react-router"
 import { Button } from "@/components/ui/button"
-import { usePageTitle } from "@/hooks/use-reveal"
 import { PageHero } from "@/components/site/hero"
 
 export default function NotFoundPage() {
-  usePageTitle("Page not found | Denver Countertops")
   return (
     <>
       <PageHero eyebrow="Not found" title="We couldn't find that page." image="/images/marble.jpg" />

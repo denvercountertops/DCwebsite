@@ -25,4 +25,8 @@ npm run build
 
 Upload the contents of the `dist/` folder to any static host (Netlify, Vercel, Cloudflare Pages, or your current host).
 
-The site has separate pages (`/about`, `/services`, `/deals`, `/pricing`, `/our-work`, `/materials`, `/faq`, `/contact`). The host must send every address to `index.html`. `public/_redirects` already does this on Netlify and Cloudflare Pages; other hosts need an equivalent "rewrite all to index.html" rule.
+The build pre-renders every page to its own HTML file (`about.html`, `countertops.html`, …) with its own title, description and share tags, plus a `404.html`, `robots.txt` and `sitemap.xml`. Netlify and Cloudflare Pages serve `/about` from `about.html` automatically.
+
+- **Site address:** the sitemap and share links use Netlify's `URL` setting (your custom domain once it's connected). Set a `SITE_URL` environment variable to override it.
+- **Adding a page:** add a route in `src/App.tsx` and its title/description in `src/data/seo.ts`.
+- **Old addresses:** `public/_redirects` sends old denvercounter.com page addresses to the new pages.

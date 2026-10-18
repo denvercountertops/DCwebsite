@@ -1,10 +1,8 @@
-import { usePageTitle } from "@/hooks/use-reveal"
 import { Faq } from "@/components/site/faq"
 import { CtaBand, PageHero } from "@/components/site/hero"
 import { Pricing } from "@/components/site/pricing"
 
 export default function PricingPage() {
-  usePageTitle("Countertop Pricing | Denver Countertops")
   return (
     <>
       <PageHero

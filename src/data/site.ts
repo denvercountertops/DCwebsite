@@ -124,7 +124,7 @@ export const trustPoints = [
   "Family owned since 2002",
   "We never subcontract — one team from template to install",
   "7–10 day turnaround",
-  "Largest in-stock slab selection in Colorado",
+  "Denver's largest in-stock slab selection",
 ]
 
 export const stats = [
@@ -281,21 +281,21 @@ export const whyUs = [
 ]
 
 export const gallery = [
-  { src: "/images/projects/project-1.webp", alt: "Gray-veined stone waterfall island with undermount stainless sink and dark wood cabinets" },
-  { src: "/images/projects/project-3.webp", alt: "Twin waterfall islands in white stone with bold black veining and black cabinets" },
-  { src: "/images/projects/project-6.webp", alt: "Waterfall island with a curved edge, full-height stone backsplash and stone range hood" },
-  { src: "/images/projects/project-5.webp", alt: "White marble-look waterfall island and full-height backsplash with a brass chandelier" },
-  { src: "/images/projects/project-7.webp", alt: "Large white stone island with seating overhang for five stools" },
-  { src: "/images/projects/project-11.webp", alt: "Outdoor kitchen with stone countertops, built-in grills and bar seating" },
-  { src: "/images/projects/project-9.webp", alt: "Veined stone island on a navy shiplap base with matching perimeter countertops" },
-  { src: "/images/projects/project-2.webp", alt: "White veined countertops and peninsula with an undermount double sink and lit base" },
-  { src: "/images/projects/project-10.webp", alt: "Stone-clad range hood and full-height stone backsplash" },
-  { src: "/images/projects/project-8.webp", alt: "White and brown granite countertops on rustic wood cabinets with undermount sink" },
-  { src: "/images/gallery/kitchen-1.webp", alt: "Navy cabinet kitchen with white quartz countertops and brass hardware" },
-  { src: "/images/gallery/kitchen-2.webp", alt: "White kitchen with a thick-edge quartz island and gold pendants" },
-  { src: "/images/gallery/kitchen-3.webp", alt: "Charcoal and white kitchen with speckled quartz island" },
-  { src: "/images/gallery/kitchen-4.webp", alt: "Navy kitchen with white countertops and hexagon tile backsplash" },
-  { src: "/images/gallery/kitchen-5.webp", alt: "Bright white kitchen with white quartz island and dark floors" },
+  { src: "/images/projects/project-1.webp", alt: "Gray-veined stone waterfall island with undermount stainless sink and dark wood cabinets", w: 1448, h: 1086 },
+  { src: "/images/projects/project-3.webp", alt: "Twin waterfall islands in white stone with bold black veining and black cabinets", w: 1642, h: 958 },
+  { src: "/images/projects/project-6.webp", alt: "Waterfall island with a curved edge, full-height stone backsplash and stone range hood", w: 1024, h: 1536 },
+  { src: "/images/projects/project-5.webp", alt: "White marble-look waterfall island and full-height backsplash with a brass chandelier", w: 1448, h: 1086 },
+  { src: "/images/projects/project-7.webp", alt: "Large white stone island with seating overhang for five stools", w: 2000, h: 1459 },
+  { src: "/images/projects/project-11.webp", alt: "Outdoor kitchen with stone countertops, built-in grills and bar seating", w: 1844, h: 853 },
+  { src: "/images/projects/project-9.webp", alt: "Veined stone island on a navy shiplap base with matching perimeter countertops", w: 1448, h: 1086 },
+  { src: "/images/projects/project-2.webp", alt: "White veined countertops and peninsula with an undermount double sink and lit base", w: 1448, h: 1086 },
+  { src: "/images/projects/project-10.webp", alt: "Stone-clad range hood and full-height stone backsplash", w: 1024, h: 1536 },
+  { src: "/images/projects/project-8.webp", alt: "White and brown granite countertops on rustic wood cabinets with undermount sink", w: 1448, h: 1086 },
+  { src: "/images/gallery/kitchen-1.webp", alt: "Navy cabinet kitchen with white quartz countertops and brass hardware", w: 1024, h: 682 },
+  { src: "/images/gallery/kitchen-2.webp", alt: "White kitchen with a thick-edge quartz island and gold pendants", w: 1024, h: 683 },
+  { src: "/images/gallery/kitchen-3.webp", alt: "Charcoal and white kitchen with speckled quartz island", w: 1024, h: 682 },
+  { src: "/images/gallery/kitchen-4.webp", alt: "Navy kitchen with white countertops and hexagon tile backsplash", w: 1024, h: 682 },
+  { src: "/images/gallery/kitchen-5.webp", alt: "Bright white kitchen with white quartz island and dark floors", w: 1024, h: 682 },
 ]
 
 export const materials = [

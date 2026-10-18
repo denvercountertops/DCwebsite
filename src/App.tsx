@@ -4,6 +4,7 @@ import { useReveal } from "@/hooks/use-reveal"
 import { Footer, MobileCtaBar } from "@/components/site/contact"
 import { Header } from "@/components/site/header"
 import { QuoteProvider } from "@/components/site/quote-context"
+import { metaFor } from "@/data/seo"
 import AboutPage from "@/pages/about"
 import ContactPage from "@/pages/contact"
 import CountertopsPage from "@/pages/countertops"
@@ -19,6 +20,7 @@ import ServicesPage from "@/pages/services"
 function ScrollManager() {
   const { pathname, hash } = useLocation()
   useLayoutEffect(() => {
+    document.title = metaFor(pathname).title
     if (hash) {
       document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: "instant" })
     } else {

@@ -1,9 +1,7 @@
-import { usePageTitle } from "@/hooks/use-reveal"
 import { CtaBand, PageHero } from "@/components/site/hero"
 import { ServicesDetail } from "@/components/site/services"
 
 export default function ServicesPage() {
-  usePageTitle("Services | Countertops, Porcelain Walls, Repairs & Remodeling | Denver Countertops")
   return (
     <>
       <PageHero

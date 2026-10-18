@@ -1,9 +1,7 @@
-import { usePageTitle } from "@/hooks/use-reveal"
 import { Faq } from "@/components/site/faq"
 import { CtaBand, PageHero } from "@/components/site/hero"
 
 export default function FaqPage() {
-  usePageTitle("Countertop FAQ | Denver Countertops")
   return (
     <>
       <PageHero

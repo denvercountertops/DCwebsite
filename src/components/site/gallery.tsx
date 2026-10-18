@@ -47,6 +47,8 @@ export function Gallery() {
               <img
                 src={g.src}
                 alt={g.alt}
+                width={g.w}
+                height={g.h}
                 loading="lazy"
                 className="h-auto w-full transition-transform duration-700 group-hover:scale-105"
               />

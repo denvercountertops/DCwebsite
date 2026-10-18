@@ -43,18 +43,31 @@ export function Reviews() {
   )
 }
 
+const partnerLogos = [
+  { name: "Cambria", w: 218, h: 52 },
+  { name: "Arizona Tile", w: 218, h: 52 },
+  { name: "Silestone", w: 218, h: 52 },
+  { name: "MSI", w: 158, h: 66 },
+  { name: "Dorado", w: 389, h: 129 },
+  { name: "Daltile", w: 1423, h: 291 },
+  { name: "Q Premium Natural Quartz by MSI", w: 158, h: 75 },
+  { name: "Francini", w: 557, h: 151 },
+].map((p, i) => ({ ...p, src: `/images/partners/partner-${i + 1}.png` }))
+
 export function Partners() {
-  const logos = Array.from({ length: 8 }, (_, i) => `/images/partners/partner-${i + 1}.png`)
   return (
     <section aria-label="Our suppliers and partners" className="border-y border-stone-200 bg-white py-10">
       <p className="eyebrow mb-8 text-center text-muted-foreground">Proud to work with the industry's best suppliers</p>
       <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
         <div className="flex w-max animate-marquee items-center gap-16 pr-16">
-          {[...logos, ...logos].map((src, i) => (
+          {[...partnerLogos, ...partnerLogos].map((p, i) => (
             <img
               key={i}
-              src={src}
-              alt=""
+              src={p.src}
+              alt={i < partnerLogos.length ? p.name : ""}
+              aria-hidden={i >= partnerLogos.length || undefined}
+              width={p.w}
+              height={p.h}
               loading="lazy"
               className="h-10 w-auto max-w-[160px] object-contain opacity-60 grayscale transition hover:opacity-100 hover:grayscale-0"
             />

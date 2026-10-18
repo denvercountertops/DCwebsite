@@ -1,9 +1,7 @@
-import { usePageTitle } from "@/hooks/use-reveal"
 import { Deals } from "@/components/site/deals"
 import { CtaBand, PageHero } from "@/components/site/hero"
 
 export default function DealsPage() {
-  usePageTitle("Slab Liquidation Deals | Denver Countertops")
   return (
     <>
       <PageHero

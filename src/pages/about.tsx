@@ -1,12 +1,10 @@
 import { BadgeCheck } from "lucide-react"
-import { usePageTitle } from "@/hooks/use-reveal"
 import { CtaBand, PageHero } from "@/components/site/hero"
 import { Process, WhyUs } from "@/components/site/process"
 import { Reviews } from "@/components/site/reviews"
 import { aboutStory, stats } from "@/data/site"
 
 export default function AboutPage() {
-  usePageTitle("About Us | Denver Countertops")
   return (
     <>
       <PageHero

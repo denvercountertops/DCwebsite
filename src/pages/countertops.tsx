@@ -1,10 +1,8 @@
-import { usePageTitle } from "@/hooks/use-reveal"
 import { CountertopRooms, EdgeProfiles, Fabrication, InstallPrep, MaterialSwatches, Sinks } from "@/components/site/countertops"
 import { CtaBand, PageHero } from "@/components/site/hero"
 import { Reviews } from "@/components/site/reviews"
 
 export default function CountertopsPage() {
-  usePageTitle("Custom Granite & Quartz Countertops | Fabrication & Installation | Denver Countertops")
   return (
     <>
       <PageHero

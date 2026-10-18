@@ -18,9 +18,3 @@ export function useReveal(key: string) {
     return () => io.disconnect()
   }, [key])
 }
-
-export function usePageTitle(title: string) {
-  useEffect(() => {
-    document.title = title
-  }, [title])
-}
